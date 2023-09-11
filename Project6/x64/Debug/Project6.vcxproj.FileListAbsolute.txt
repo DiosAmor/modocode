@@ -1,1 +1,2 @@
 C:\Users\krdio\source\repos\Project6\x64\Debug\Project6.exe
+C:\Users\krdio\Documents\GitHub\modocode\Project6\x64\Debug\Project6.exe
