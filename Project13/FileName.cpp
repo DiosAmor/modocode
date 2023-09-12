@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <vector>
 
 class MyString {
 	char* string_content;
@@ -14,7 +15,7 @@ public:
 
 	MyString(const MyString& str);
 
-	MyString(MyString&& str);
+	MyString(MyString&& str) noexcept;
 
 	void reserve(int size);
 	MyString operator+(const MyString& s);
@@ -50,7 +51,7 @@ MyString::MyString(const MyString& str) {
 	for (int i = 0; i != string_length; i++)
 		string_content[i] = str.string_content[i];
 }
-MyString::MyString(MyString&& str) {
+MyString::MyString(MyString&& str) noexcept {
 	std::cout << "이동 생성자 호출 ! " << std::endl;
 	string_length = str.string_length;
 	memory_capacity = str.memory_capacity;
@@ -95,10 +96,14 @@ void MyString::println(){
 }
 
 int main() {
-	MyString str1("abc");
-	MyString str2("def");
+	MyString s("abc");
+	std::vector<MyString> vec;
+	vec.resize(0);
 
-	std::cout << "--------------" << std::endl;
-	MyString str3 = str1 + str2;
-	str3.println();
+	std::cout << "첫 번째 추가 ---" << std::endl;
+	vec.push_back(s);
+	std::cout << "두 번째 추가 ---" << std::endl;
+	vec.push_back(s);
+	std::cout << "세 번째 추가 ---" << std::endl;
+	vec.push_back(s);
 }
